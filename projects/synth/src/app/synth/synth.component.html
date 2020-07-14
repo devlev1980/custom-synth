@@ -1,0 +1,63 @@
+<div class="synths">
+  <mat-form-field>
+    <mat-label>Choose your synth</mat-label>
+    <mat-select (selectionChange)="onChangeSynth($event)">
+      <mat-option *ngFor="let synth of synths " [value]="synth.value">{{synth.viewValue}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div class="adsr__container" *ngIf="isDisableADSR">
+  <div class="adsr-controls">
+    <div class=adsr__control>
+      <span>Attack</span>
+      <mat-slider [min]="min" [max]="max" [step]="step" [(ngModel)]="attack" (valueChange)="onAttackChange($event)"
+                  (input)="onChange($event,1)"></mat-slider>
+
+      <span>{{attack}}</span>
+    </div>
+    <div class="adsr__control">
+      <span>Decay</span>
+      <mat-slider [min]="min" [max]="max" [step]="step" [(ngModel)]="decay" (valueChange)="onDecayChange($event)"
+                  (input)="onChange($event,2)"></mat-slider>
+      <span>{{decay}}</span>
+    </div>
+    <div class="adsr__control">
+      <span>Sustain</span>
+      <mat-slider [min]="min" [max]="max" [step]="step" [(ngModel)]="sustain" (valueChange)="onSustainChange($event)"
+                  (input)="onChange($event,3)"></mat-slider>
+      <span>{{sustain}}</span>
+    </div>
+    <div class="adsr__control">
+      <span>Release</span>
+      <mat-slider [min]="min" [max]="max" [step]="step" [(ngModel)]="release" (input)="onChange($event,4)"
+                  (valueChange)="onReleaseChange($event)"></mat-slider>
+      <span>{{release}}</span>
+    </div>
+  </div>
+  <div style="display: block;" class="adsr-chart" *ngIf="isDisableADSR">
+    <canvas baseChart width="300" height="100"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+
+</div>
+
+
+
+<div class="piano" >
+  <div class="octave" *ngFor="let octave of octaves;let last=last">
+<!--    <span class="octave__number">{{octave}}</span>-->
+    <div class="key" *ngFor="let key of notes" (mousedown)="msdown=true;play(key+octave)" (mouseup)="msdown=false"
+         [ngClass]="{'sharp': key.indexOf('#') >=1,'last': last}">
+      {{key}}
+    </div>
+  </div>
+</div>
