@@ -27,7 +27,7 @@
     "hammerjs": "^2.0.8",
     "ng2-charts": "^2.3.2",
     "ng2-knob": "^1.1.0",
-    "npm": "^6.14.5",
+    "npm": "^9.8.0",
     "rxjs": "~6.4.0",
     "tone": "^13.8.25",
     "tslib": "^1.10.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.28",
-    "@angular/cli": "~8.3.25",
+    "@angular/cli": "~16.1.4",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/node": "~8.9.4",
